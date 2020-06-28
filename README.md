@@ -14,6 +14,11 @@ This repo supports logging in iOS
 5. ❗️ Error: An error occurred, but it's recoverable, just info about what happened
 6. 🛑 Severe: A server error occurred
 
+## Prerequisite
+
+- *[SwiftLint](https://github.com/realm/SwiftLint)* enforce Swift style and conventions. Install via Homebrew: ```$ brew install swiftlint```
+- *Standardize* development mode ```$ ./Scripts/setup.sh```
+
 ## Architecture
 
 - [ ] Update Each design pattern is implemented
