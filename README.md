@@ -21,5 +21,4 @@ This repo supports logging in iOS
 
 ## Architecture
 
-- [ ] Update Each design pattern is implemented
-- [ ] Update Class Diagram
+![Architecture](ArchDiagram.png)
