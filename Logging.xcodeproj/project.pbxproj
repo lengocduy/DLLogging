@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D67A22C424AC342D00BB813C /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A22C324AC342D00BB813C /* Logging.swift */; };
+		D67B328124B24C550086AF6A /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328024B24C550086AF6A /* ReadWriteLock.swift */; };
+		D67B328324B24C640086AF6A /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328224B24C640086AF6A /* LogLevel.swift */; };
+		D67B328524B24C790086AF6A /* LogMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328424B24C790086AF6A /* LogMessage.swift */; };
+		D67B328824B250F20086AF6A /* LogPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328724B250F20086AF6A /* LogPublisher.swift */; };
+		D67B328A24B2511D0086AF6A /* LogSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328924B2511D0086AF6A /* LogSubscriber.swift */; };
+		D67B328C24B251CC0086AF6A /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328B24B251CC0086AF6A /* LogFormatter.swift */; };
+		D67B328E24B2523F0086AF6A /* PrintLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328D24B2523F0086AF6A /* PrintLogging.swift */; };
+		D67B329024B2524E0086AF6A /* PrintDebugLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328F24B2524E0086AF6A /* PrintDebugLogging.swift */; };
+		D67B329224B252570086AF6A /* FileLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B329124B252570086AF6A /* FileLogging.swift */; };
+		D67B329424B2528A0086AF6A /* LoggerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B329324B2528A0086AF6A /* LoggerManager.swift */; };
+		D6CB04C224A925BC00CA4EF6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6CB04C124A925BC00CA4EF6 /* README.md */; };
 		D6FB6D812480556900E03990 /* Logging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FB6D772480556900E03990 /* Logging.framework */; };
 		D6FB6D862480556900E03990 /* LoggingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB6D852480556900E03990 /* LoggingTests.swift */; };
 		D6FB6D882480556900E03990 /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = D6FB6D7A2480556900E03990 /* Logging.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +35,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D67A22C324AC342D00BB813C /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		D67B328024B24C550086AF6A /* ReadWriteLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
+		D67B328224B24C640086AF6A /* LogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
+		D67B328424B24C790086AF6A /* LogMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMessage.swift; sourceTree = "<group>"; };
+		D67B328724B250F20086AF6A /* LogPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogPublisher.swift; sourceTree = "<group>"; };
+		D67B328924B2511D0086AF6A /* LogSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSubscriber.swift; sourceTree = "<group>"; };
+		D67B328B24B251CC0086AF6A /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
+		D67B328D24B2523F0086AF6A /* PrintLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintLogging.swift; sourceTree = "<group>"; };
+		D67B328F24B2524E0086AF6A /* PrintDebugLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintDebugLogging.swift; sourceTree = "<group>"; };
+		D67B329124B252570086AF6A /* FileLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLogging.swift; sourceTree = "<group>"; };
+		D67B329324B2528A0086AF6A /* LoggerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerManager.swift; sourceTree = "<group>"; };
+		D6CB04C124A925BC00CA4EF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6FB6D772480556900E03990 /* Logging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FB6D7A2480556900E03990 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		D6FB6D7B2480556900E03990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,9 +74,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D67A22C224AC340B00BB813C /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				D67B328D24B2523F0086AF6A /* PrintLogging.swift */,
+				D67B328F24B2524E0086AF6A /* PrintDebugLogging.swift */,
+				D67B329124B252570086AF6A /* FileLogging.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		D67B327F24B240A70086AF6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D67B328024B24C550086AF6A /* ReadWriteLock.swift */,
+				D67B328224B24C640086AF6A /* LogLevel.swift */,
+				D67B328424B24C790086AF6A /* LogMessage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D67B328624B250D70086AF6A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D67A22C324AC342D00BB813C /* Logging.swift */,
+				D67B328724B250F20086AF6A /* LogPublisher.swift */,
+				D67B328924B2511D0086AF6A /* LogSubscriber.swift */,
+				D67B328B24B251CC0086AF6A /* LogFormatter.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		D6FB6D6D2480556900E03990 = {
 			isa = PBXGroup;
 			children = (
+				D6CB04C124A925BC00CA4EF6 /* README.md */,
 				D6FB6D792480556900E03990 /* Logging */,
 				D6FB6D842480556900E03990 /* LoggingTests */,
 				D6FB6D782480556900E03990 /* Products */,
@@ -71,8 +127,12 @@
 		D6FB6D792480556900E03990 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
+				D67B328624B250D70086AF6A /* Protocol */,
+				D67B327F24B240A70086AF6A /* Model */,
+				D67A22C224AC340B00BB813C /* Impl */,
 				D6FB6D7A2480556900E03990 /* Logging.h */,
 				D6FB6D7B2480556900E03990 /* Info.plist */,
+				D67B329324B2528A0086AF6A /* LoggerManager.swift */,
 			);
 			path = Logging;
 			sourceTree = "<group>";
@@ -149,6 +209,7 @@
 				TargetAttributes = {
 					D6FB6D762480556900E03990 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					D6FB6D7F2480556900E03990 = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -179,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6CB04C224A925BC00CA4EF6 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +279,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D67B328124B24C550086AF6A /* ReadWriteLock.swift in Sources */,
+				D67B328E24B2523F0086AF6A /* PrintLogging.swift in Sources */,
+				D67B328A24B2511D0086AF6A /* LogSubscriber.swift in Sources */,
+				D67B328824B250F20086AF6A /* LogPublisher.swift in Sources */,
+				D67B328C24B251CC0086AF6A /* LogFormatter.swift in Sources */,
+				D67B329024B2524E0086AF6A /* PrintDebugLogging.swift in Sources */,
+				D67B329424B2528A0086AF6A /* LoggerManager.swift in Sources */,
+				D67B328324B24C640086AF6A /* LogLevel.swift in Sources */,
+				D67B329224B252570086AF6A /* FileLogging.swift in Sources */,
+				D67B328524B24C790086AF6A /* LogMessage.swift in Sources */,
+				D67A22C424AC342D00BB813C /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +435,7 @@
 		D6FB6D8C2480556900E03990 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8955GH44X6;
@@ -378,6 +452,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.askbills.Logging;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -386,6 +461,7 @@
 		D6FB6D8D2480556900E03990 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8955GH44X6;
@@ -410,6 +486,7 @@
 		D6FB6D8F2480556900E03990 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8955GH44X6;
 				INFOPLIST_FILE = LoggingTests/Info.plist;
@@ -428,6 +505,7 @@
 		D6FB6D902480556900E03990 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8955GH44X6;
 				INFOPLIST_FILE = LoggingTests/Info.plist;
