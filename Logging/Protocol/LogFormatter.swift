@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+// MARK: - LogFormatter Decorator
+public protocol LogFormatter {
+    /// Custom format a message an instance of `LogMessage`.
+    ///
+    /// - parameter message: An instance of LogMessage.
+    /// - returns: a formatted message as String.
+    func formatMessage(_ message: LogMessage) -> String
+}

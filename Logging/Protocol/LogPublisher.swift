@@ -7,3 +7,29 @@
 //
 
 import Foundation
+
+// MARK: - LogPublisher Observable
+protocol LogPublisher {
+    /// A list of registered handlers or observers with this Observable
+    var loggers: [Logging] { get }
+    
+    /// Add an implementation of `Logging` to a list of registered handlers.
+    ///
+    /// - parameter logging: An implementation of Logging.
+    /// - returns: Void.
+    func addLogging(_ logging: Logging)
+    
+    /// Remove an implemation `Logging` from a list of registered handlers.
+    ///
+    /// - parameter logging: An implementation of Logging.
+    /// - returns: Void.
+    func removeLogging(_ logging: Logging)
+    
+    /// Log a message an instance of `LogMessage`.
+    /// Normally, This function was invoked by a Client.
+    /// It notifies to each registered handlers(Observers) as an Observable (Subject).
+    ///
+    /// - parameter message: An instance LogMessage need to be handled.
+    /// - returns: Void.
+    func logMessage(_ message: LogMessage)
+}

@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+final class PrintLogging: Logging, Identifiable {
+    private(set )var logFormatter: LogFormatter?
+    
+    init(logFormatter: LogFormatter?) {
+        self.logFormatter = logFormatter
+    }
+    
+    func receiveMessage(_ message: LogMessage) {
+        guard let logFormatter = logFormatter else {
+            print(message.text)
+            return
+        }
+        
+        let formattedMessage = logFormatter.formatMessage(message)
+        print(formattedMessage)
+    }
+}
