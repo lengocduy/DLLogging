@@ -18,6 +18,9 @@
 		D67B329024B2524E0086AF6A /* PrintDebugLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B328F24B2524E0086AF6A /* PrintDebugLogging.swift */; };
 		D67B329224B252570086AF6A /* FileLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B329124B252570086AF6A /* FileLogging.swift */; };
 		D67B329424B2528A0086AF6A /* LoggerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B329324B2528A0086AF6A /* LoggerManager.swift */; };
+		D67B329624B344E30086AF6A /* LoggerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B329524B344E30086AF6A /* LoggerFactory.swift */; };
+		D67B329824B346010086AF6A /* LoggerFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B329724B346010086AF6A /* LoggerFactoryImpl.swift */; };
+		D67B329A24B35ABB0086AF6A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B329924B35ABB0086AF6A /* Date.swift */; };
 		D6CB04C224A925BC00CA4EF6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6CB04C124A925BC00CA4EF6 /* README.md */; };
 		D6FB6D812480556900E03990 /* Logging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FB6D772480556900E03990 /* Logging.framework */; };
 		D6FB6D862480556900E03990 /* LoggingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB6D852480556900E03990 /* LoggingTests.swift */; };
@@ -46,6 +49,9 @@
 		D67B328F24B2524E0086AF6A /* PrintDebugLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintDebugLogging.swift; sourceTree = "<group>"; };
 		D67B329124B252570086AF6A /* FileLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLogging.swift; sourceTree = "<group>"; };
 		D67B329324B2528A0086AF6A /* LoggerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerManager.swift; sourceTree = "<group>"; };
+		D67B329524B344E30086AF6A /* LoggerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerFactory.swift; sourceTree = "<group>"; };
+		D67B329724B346010086AF6A /* LoggerFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerFactoryImpl.swift; sourceTree = "<group>"; };
+		D67B329924B35ABB0086AF6A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D6CB04C124A925BC00CA4EF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6FB6D772480556900E03990 /* Logging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FB6D7A2480556900E03990 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
@@ -80,6 +86,7 @@
 				D67B328D24B2523F0086AF6A /* PrintLogging.swift */,
 				D67B328F24B2524E0086AF6A /* PrintDebugLogging.swift */,
 				D67B329124B252570086AF6A /* FileLogging.swift */,
+				D67B329724B346010086AF6A /* LoggerFactoryImpl.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -90,6 +97,7 @@
 				D67B328024B24C550086AF6A /* ReadWriteLock.swift */,
 				D67B328224B24C640086AF6A /* LogLevel.swift */,
 				D67B328424B24C790086AF6A /* LogMessage.swift */,
+				D67B329924B35ABB0086AF6A /* Date.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -101,6 +109,7 @@
 				D67B328724B250F20086AF6A /* LogPublisher.swift */,
 				D67B328924B2511D0086AF6A /* LogSubscriber.swift */,
 				D67B328B24B251CC0086AF6A /* LogFormatter.swift */,
+				D67B329524B344E30086AF6A /* LoggerFactory.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -284,8 +293,11 @@
 				D67B328A24B2511D0086AF6A /* LogSubscriber.swift in Sources */,
 				D67B328824B250F20086AF6A /* LogPublisher.swift in Sources */,
 				D67B328C24B251CC0086AF6A /* LogFormatter.swift in Sources */,
+				D67B329824B346010086AF6A /* LoggerFactoryImpl.swift in Sources */,
 				D67B329024B2524E0086AF6A /* PrintDebugLogging.swift in Sources */,
+				D67B329624B344E30086AF6A /* LoggerFactory.swift in Sources */,
 				D67B329424B2528A0086AF6A /* LoggerManager.swift in Sources */,
+				D67B329A24B35ABB0086AF6A /* Date.swift in Sources */,
 				D67B328324B24C640086AF6A /* LogLevel.swift in Sources */,
 				D67B329224B252570086AF6A /* FileLogging.swift in Sources */,
 				D67B328524B24C790086AF6A /* LogMessage.swift in Sources */,
