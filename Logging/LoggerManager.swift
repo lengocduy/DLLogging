@@ -26,8 +26,9 @@ open class LoggerManager: LogPublisher {
     private func setUpLogger() {
         setUpLoggerFactoryType(LoggerFactoryImpl.self)
         enableLevels(LogLevel.allCases)
-        addLogging(loggerFactoryType.makeConsoleLogging(logFormatter: nil))
-        addLogging(loggerFactoryType.makeFileLogging(fileName: "appLogs", logFormatter: self))
+        let logFormatter = LogFormatterImpl()
+        addLogging(loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter))
+        addLogging(loggerFactoryType.makeFileLogging(fileName: "appLogs", logFormatter: logFormatter))
     }
     
     /// Allow Client inject customized its implementation conform to LoggerFactory.
@@ -42,9 +43,9 @@ open class LoggerManager: LogPublisher {
 }
 
 // MARK: - LogFormatter
-extension LoggerManager: LogFormatter {
+struct LogFormatterImpl: LogFormatter {
     public func formatMessage(_ message: LogMessage) -> String {
-        return ""
+        return "[\(message.function)]:line:\(message.line):\(message.level.name) \(message.text)"
     }
 }
 
@@ -139,7 +140,7 @@ public extension LoggerManager {
     ///
     /// - returns: Void.
     func verbose(message: String, path: String = #file,
-               function: String = #function, line: Int = #line) {
+                 function: String = #function, line: Int = #line) {
         log(.verbose, message: message, path: path, function: function, line: line)
     }
     
@@ -167,7 +168,7 @@ public extension LoggerManager {
     ///
     /// - returns: Void.
     func info(message: String, path: String = #file,
-               function: String = #function, line: Int = #line) {
+              function: String = #function, line: Int = #line) {
         log(.info, message: message, path: path, function: function, line: line)
     }
     
@@ -181,7 +182,7 @@ public extension LoggerManager {
     ///
     /// - returns: Void.
     func warning(message: String, path: String = #file,
-               function: String = #function, line: Int = #line) {
+                 function: String = #function, line: Int = #line) {
         log(.warning, message: message, path: path, function: function, line: line)
     }
     
@@ -209,7 +210,7 @@ public extension LoggerManager {
     ///
     /// - returns: Void.
     func severe(message: String, path: String = #file,
-               function: String = #function, line: Int = #line) {
+                function: String = #function, line: Int = #line) {
         log(.severe, message: message, path: path, function: function, line: line)
     }
 }
