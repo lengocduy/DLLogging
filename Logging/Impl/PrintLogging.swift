@@ -8,8 +8,8 @@
 
 import Foundation
 
-final class PrintLogging: Logging, Identifiable {
-    private(set )var logFormatter: LogFormatter?
+final class PrintLogging: Logging {
+    private(set ) var logFormatter: LogFormatter?
     
     init(logFormatter: LogFormatter?) {
         self.logFormatter = logFormatter
@@ -25,3 +25,6 @@ final class PrintLogging: Logging, Identifiable {
         print(formattedMessage)
     }
 }
+
+@available(iOS 13, *)
+extension PrintLogging: Identifiable {}

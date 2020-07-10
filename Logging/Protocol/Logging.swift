@@ -10,7 +10,7 @@ import Foundation
 
 /// Any object that conforms to this protocol may log messages
 // MARK: - Logging
-protocol Logging: LogSubscriber {
+public protocol Logging: LogSubscriber {
     /// Decorate (delegate) allow client customize format message.
     var logFormatter: LogFormatter? { get }
     
@@ -30,6 +30,7 @@ extension Logging {
     func reset() {}
 }
 
+@available(iOS 13, *)
 extension Identifiable where Self: AnyObject {
     var id: ObjectIdentifier {
         return ObjectIdentifier(self)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class FileLogging: Logging, Identifiable {
+final class FileLogging: Logging {
     private let fileHandle: FileHandle
     private(set )var logFormatter: LogFormatter?
     
@@ -53,3 +53,6 @@ final class FileLogging: Logging, Identifiable {
         fileHandle.seek(toFileOffset: 0)
     }
 }
+
+@available(iOS 13, *)
+extension FileLogging: Identifiable {}

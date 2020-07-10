@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - PrintDebugLogging
-final class PrintDebugLogging: Logging, Identifiable {
+final class PrintDebugLogging: Logging {
     private(set )var logFormatter: LogFormatter?
     
     init(logFormatter: LogFormatter?) {
@@ -36,17 +36,22 @@ private extension PrintDebugLogging {
     ///   Duy Le Ngoc
     ///
     /// - parameters:
-    /// - file: The name of the file calls this method.
-    /// - line: The line of the code calls this method.
+    ///     - file: The name of the file calls this method.
+    ///     - line: The line of the code calls this method.
     ///
     /// - returns: Void
     func printLocation(file: String, line: Int) {
         let substrings = file.components(separatedBy: "/")
+        print("### printLocation substrings = \(substrings)")
         guard substrings.count > 1 else {
+            print(">>> [\(substrings.last!)]:line:\(line)")
             return
         }
 
         let fileName = substrings[substrings.count - 2] + substrings.last!
-        print("[Logger] >>> File \(fileName) at line \(line)")
+        print(">>> [\(fileName)]:line:\(line)")
     }
 }
+
+@available(iOS 13, *)
+extension PrintDebugLogging: Identifiable {}

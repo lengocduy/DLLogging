@@ -9,16 +9,16 @@
 import Foundation
 
 // MARK: - LoggerFactoryImpl
-enum LoggerFactoryImpl: LoggerFactory {
-    static func makeConsoleLogging(logFormatter: LogFormatter? = nil) -> Logging {
+public struct LoggerFactoryImpl: LoggerFactory {
+    public static func makeConsoleLogging(logFormatter: LogFormatter? = nil) -> Logging {
         return PrintLogging(logFormatter: logFormatter)
     }
     
-    static func makeConsoleDebugLogging(logFormatter: LogFormatter?) -> Logging {
+    public static func makeConsoleDebugLogging(logFormatter: LogFormatter? = nil) -> Logging {
         return PrintDebugLogging(logFormatter: logFormatter)
     }
     
-    static func makeFileLogging(fileName: String, logFormatter: LogFormatter?) -> Logging {
+    public static func makeFileLogging(fileName: String, logFormatter: LogFormatter? = nil) -> Logging {
         let filePath = getPathFileName(fileName)
         return FileLogging(path: filePath, logFormatter: logFormatter)
     }

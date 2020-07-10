@@ -19,6 +19,26 @@ This repo supports logging in iOS
 - *[SwiftLint](https://github.com/realm/SwiftLint)* enforce Swift style and conventions. Install via Homebrew: ```$ brew install swiftlint```
 - *Standardize* development mode ```$ ./Scripts/setup.sh```
 
+## Installation
+
+There are two ways to install `swift-log`
+
+### CocoaPods
+
+Just add to your project's `Podfile`:
+
+```
+github "lengocduy/swift-log"
+```
+
+### Carthage
+
+Add following to `Cartfile`:
+
+```
+github "lengocduy/swift-log"
+```
+
 ## Architecture
 
 ![Architecture](ArchDiagram.png)
