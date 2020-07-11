@@ -8,6 +8,29 @@
 
 import Foundation
 
+// MARK: - LogFormatter Default
+struct LogFormatterImpl: LogFormatter {
+    public func formatMessage(_ message: LogMessage) -> String {
+        let time = Date().stringByFormat(.iso8601)
+        return "\(time) [\(message.level.symbol)][\(getLogLocation(message))] -> \(message.text)"
+    }
+    
+    /// Logs detail location of file at a line call log method. It only uses internally
+    ///
+    /// - Author:
+    ///   Duy Le Ngoc
+    ///
+    /// - parameters:
+    ///     - file: The name of the file calls this method.
+    ///     - line: The line of the code calls this method.
+    ///
+    /// - returns: Void
+    func getLogLocation(_ message: LogMessage) -> String {
+        let substrings = message.file.components(separatedBy: "/")
+        return "\(substrings.last ?? ""):\(message.line):\(message.function)"
+    }
+}
+
 // MARK: - Open Class
 open class LoggerManager: LogPublisher {
     public static let sharedInstance = LoggerManager()
@@ -25,7 +48,6 @@ open class LoggerManager: LogPublisher {
     /// - returns: Void
     private func setUpLogger() {
         setUpLoggerFactoryType(LoggerFactoryImpl.self)
-        enableLevels(LogLevel.allCases)
         let logFormatter = LogFormatterImpl()
         addLogging(loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter))
         addLogging(loggerFactoryType.makeFileLogging(fileName: "appLogs", logFormatter: logFormatter))
@@ -39,13 +61,6 @@ open class LoggerManager: LogPublisher {
     /// - returns: Void.
     open func setUpLoggerFactoryType(_ loggerFactoryType: LoggerFactory.Type) {
         self.loggerFactoryType = loggerFactoryType
-    }
-}
-
-// MARK: - LogFormatter
-struct LogFormatterImpl: LogFormatter {
-    public func formatMessage(_ message: LogMessage) -> String {
-        return "[\(message.function)]:line:\(message.line):\(message.level.name) \(message.text)"
     }
 }
 
@@ -81,32 +96,6 @@ extension LoggerManager {
         let log = LogMessage(path: path, function: function, text: message, level: level, line: line)
         logMessage(log)
     }
-}
-
-// MARK: - Public Methods
-public extension LoggerManager {
-    /// Entry point to access Logger feature.
-    func initialize() {
-        setUpLogger()
-    }
-    
-    func addLogging(_ logging: Logging) {
-        readWriteLock.write {
-            loggers.append(logging)
-        }
-    }
-    
-    func removeLogging(_ logging: Logging) {
-//        if logging {
-//            <#code#>
-//        }
-    }
-    
-    func resetLogging() {
-        readWriteLock.write {
-            loggers.removeAll()
-        }
-    }
     
     /// Enable log messages of a specific `LogLevel` to be added to the log.
     ///
@@ -119,98 +108,60 @@ public extension LoggerManager {
             levels.forEach { enabledLevels.insert($0) }
         }
     }
+}
+
+// MARK: - Public Methods
+public extension LoggerManager {
+    /// Entry point to access Logger feature.
+    func initialize() {
+        enableLevels(LogLevel.allCases)
+        setUpLogger()
+    }
+    
+    /// Add an implementation of `Logging` to a list of registered handlers.
+    ///
+    /// - parameter logging: An implementation of Logging.
+    /// - returns: Void.
+    func addLogging(_ logging: Logging) {
+        readWriteLock.write {
+            loggers.append(logging)
+        }
+    }
+    
+    /// Remove an implemation `Logging` from a list of registered handlers.
+    ///
+    /// - parameter logging: An implementation of Logging.
+    /// - returns: Void.
+    func removeLogging(_ logging: Logging) {
+//        if logging {
+//            <#code#>
+//        }
+    }
+    
+    /// Clear all registered handlers (observers).
+    func clearLogging() {
+        readWriteLock.write {
+            loggers.removeAll()
+        }
+    }
 
     /// Disable log messages of a specific `LogLevel` to prevent them from being logged
+    ///
+    /// Disable LogLevels debug and warning
+    /// ```
+    /// LoggerManager.sharedInstance.disableLevels([.debug, .warning]
+    /// ```
+    /// Disable all LogLevels
+    /// ```
+    /// LoggerManager.sharedInstance.disableLevels(LogLevel.allCases)
+    /// ```
+    /// - parameters:
+    ///     - levels: an array of LogLevel want to disabled.
+    ///
+    /// - returns: Void.
     func disableLevels(_ levels: [LogLevel]) {
         readWriteLock.write {
             levels.forEach { enabledLevels.remove($0) }
         }
-    }
-}
-
-// MARK: - Public Methods more declarative
-public extension LoggerManager {
-    /// Log when working on a specific problem.
-    ///
-    /// - parameters:
-    ///     - message: content that client want to print.
-    ///     - path: file name invoke the log.
-    ///     - function: function name invoke the log.
-    ///     - line: specify line invoke the log.
-    ///
-    /// - returns: Void.
-    func verbose(message: String, path: String = #file,
-                 function: String = #function, line: Int = #line) {
-        log(.verbose, message: message, path: path, function: function, line: line)
-    }
-    
-    /// Log to help developer.
-    ///
-    /// - parameters:
-    ///     - message: content that client want to print.
-    ///     - path: file name invoke the log.
-    ///     - function: function name invoke the log.
-    ///     - line: specify line invoke the log.
-    ///
-    /// - returns: Void.
-    func debug(message: String, path: String = #file,
-               function: String = #function, line: Int = #line) {
-        log(.debug, message: message, path: path, function: function, line: line)
-    }
-    
-    /// Log to highlight the progress of the application at coarse-grained level.
-    ///
-    /// - parameters:
-    ///     - message: content that client want to print.
-    ///     - path: file name invoke the log.
-    ///     - function: function name invoke the log.
-    ///     - line: specify line invoke the log.
-    ///
-    /// - returns: Void.
-    func info(message: String, path: String = #file,
-              function: String = #function, line: Int = #line) {
-        log(.info, message: message, path: path, function: function, line: line)
-    }
-    
-    /// Log to indicate a possible error.
-    ///
-    /// - parameters:
-    ///     - message: content that client want to print.
-    ///     - path: file name invoke the log.
-    ///     - function: function name invoke the log.
-    ///     - line: specify line invoke the log.
-    ///
-    /// - returns: Void.
-    func warning(message: String, path: String = #file,
-                 function: String = #function, line: Int = #line) {
-        log(.warning, message: message, path: path, function: function, line: line)
-    }
-    
-    /// Log an error occurred, but it's recoverable, just info about what happened.
-    ///
-    /// - parameters:
-    ///     - message: content that client want to print.
-    ///     - path: file name invoke the log.
-    ///     - function: function name invoke the log.
-    ///     - line: specify line invoke the log.
-    ///
-    /// - returns: Void.
-    func error(message: String, path: String = #file,
-               function: String = #function, line: Int = #line) {
-        log(.error, message: message, path: path, function: function, line: line)
-    }
-    
-    /// Log a server error occurred.
-    ///
-    /// - parameters:
-    ///     - message: content that client want to print.
-    ///     - path: file name invoke the log.
-    ///     - function: function name invoke the log.
-    ///     - line: specify line invoke the log.
-    ///
-    /// - returns: Void.
-    func severe(message: String, path: String = #file,
-                function: String = #function, line: Int = #line) {
-        log(.severe, message: message, path: path, function: function, line: line)
     }
 }
