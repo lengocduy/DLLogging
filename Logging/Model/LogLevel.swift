@@ -11,7 +11,7 @@ import Foundation
 /// This defines the various levels of logging that a message may be tagged with. This allows hiding and
 /// showing different logging levels at run time depending on the environment
 // MARK: - LogLevel
-public enum LogLevel: String {
+public enum LogLevel: String, CaseIterable {
     /// Verbose 🗣 - A verbose message, usually useful when working on a specific problem
     case verbose
     

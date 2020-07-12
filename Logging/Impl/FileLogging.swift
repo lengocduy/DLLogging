@@ -8,13 +8,13 @@
 
 import Foundation
 
-final class FileLogging: Logging, Identifiable {
+final class FileLogging: Logging {
     private let fileHandle: FileHandle
     private(set )var logFormatter: LogFormatter?
     
     init(path: String, logFormatter: LogFormatter?) {
         /// create a file if it does not exist
-        FileManager.default.createFile(atPath: path, contents: nil, attributes: nil)
+        FileManager.default.createFile(atPath: "\(path).txt", contents: nil, attributes: nil)
         if let handle = FileHandle(forWritingAtPath: path) {
             fileHandle = handle
         } else {
@@ -38,9 +38,9 @@ final class FileLogging: Logging, Identifiable {
             return
         }
         let time = Date().stringByFormat(.iso8601)
-        var formattedMessage = "[\(time)] : [\(message.file)] -> \(message.function) at line \(message.line): \(message.text)\n"
+        var formattedMessage = "\(message.level.symbol) \(time): [\(message.file)]:\(message.function):\(message.line): \(message.text)"
         if let logFormatter = logFormatter {
-            formattedMessage = "[\(time)] : \(logFormatter.formatMessage(message))"
+            formattedMessage = logFormatter.formatMessage(message)
         }
         
         if let data = formattedMessage.data(using: String.Encoding.utf8) {
@@ -53,3 +53,6 @@ final class FileLogging: Logging, Identifiable {
         fileHandle.seek(toFileOffset: 0)
     }
 }
+
+@available(iOS 13, *)
+extension FileLogging: Identifiable {}

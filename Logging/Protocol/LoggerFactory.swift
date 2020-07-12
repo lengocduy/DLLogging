@@ -13,7 +13,7 @@ import Foundation
 /// AbstractFactory defines an interface for creating families of related or dependent objects without specify concrete classes
 /// A hierarchy that encapsulates: many possible "platforms", and the construction of a suite of "products".
 /// The new operator considered harmful.
-protocol LoggerFactory {
+public protocol LoggerFactory {
     static func makeConsoleLogging(logFormatter: LogFormatter?) -> Logging
     static func makeConsoleDebugLogging(logFormatter: LogFormatter?) -> Logging
     static func makeFileLogging(fileName: String, logFormatter: LogFormatter?) -> Logging

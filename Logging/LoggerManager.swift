@@ -8,27 +8,67 @@
 
 import Foundation
 
-class LoggerManager: LogPublisher {
-    static let sharedInstance = LoggerManager()
+// MARK: - LogFormatter Default
+struct LogFormatterImpl: LogFormatter {
+    public func formatMessage(_ message: LogMessage) -> String {
+        let time = Date().stringByFormat(.iso8601)
+        return "\(time) [\(message.level.symbol)][\(getLogLocation(message))] -> \(message.text)"
+    }
     
+    /// Logs detail location of file at a line call log method. It only uses internally
+    ///
+    /// - Author:
+    ///   Duy Le Ngoc
+    ///
+    /// - parameters:
+    ///     - file: The name of the file calls this method.
+    ///     - line: The line of the code calls this method.
+    ///
+    /// - returns: Void
+    func getLogLocation(_ message: LogMessage) -> String {
+        let substrings = message.file.components(separatedBy: "/")
+        return "\(substrings.last ?? ""):\(message.line):\(message.function)"
+    }
+}
+
+// MARK: - Open Class
+open class LoggerManager: LogPublisher {
+    public static let sharedInstance = LoggerManager()
+    
+    public private(set) var loggerFactoryType: LoggerFactory.Type = LoggerFactoryImpl.self
     private(set) var loggers: [Logging] = []
     private var enabledLevels = Set<LogLevel>()
     private let readWriteLock = ReadWriteLock(label: "loggerLock")
     
     private init() {}
     
-    func addLogging(_ logging: Logging) {
-        loggers.append(logging)
+    /// Set up the default for Log.
+    /// Client use this function for quick setup and use default framework.
+    ///
+    /// - returns: Void
+    private func setUpLogger() {
+        setUpLoggerFactoryType(LoggerFactoryImpl.self)
+        let logFormatter = LogFormatterImpl()
+        addLogging(loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter))
+        addLogging(loggerFactoryType.makeFileLogging(fileName: "appLogs", logFormatter: logFormatter))
     }
     
-    func removeLogging(_ logging: Logging) {
-//        if logging {
-//            <#code#>
-//        }
+    /// Allow Client inject customized its implementation conform to LoggerFactory.
+    ///
+    /// - parameters:
+    ///     - loggerFactoryType: an implementation of LoggerFactory (conform to protocol LoggerFactory).
+    ///
+    /// - returns: Void.
+    open func setUpLoggerFactoryType(_ loggerFactoryType: LoggerFactory.Type) {
+        self.loggerFactoryType = loggerFactoryType
     }
-    
-    /// Entry point to receive messages from Client.
-    /// Then, It notifies to each registered handlers(Observers) as an Observable (Subject).
+}
+
+// MARK: - Internal Methods
+extension LoggerManager {
+    /// Entry point to receive messages forward to internal system from Client.
+    ///
+    /// It notifies to each registered handlers(Observers) as an Observable (Subject).
     ///
     /// - parameter message: An instance LogMessage need to be handled.
     /// - returns: Void.
@@ -41,17 +81,87 @@ class LoggerManager: LogPublisher {
         loggers.forEach { $0.receiveMessage(message) }
     }
     
-    /// Enable log messages of a specific `LogLevel` to be added to the log
-    func enableLevel(_ level: LogLevel) {
+    /// Entry point to receive messages from Client.
+    ///
+    /// - parameters:
+    ///     - level: An instance LogLevel.
+    ///     - message: content that client want to print.
+    ///     - path: file name invoke the log.
+    ///     - function: function name invoke the log.
+    ///     - line: specify line invoke the log.
+    ///
+    /// - returns: Void.
+    func log(_ level: LogLevel, message: String,
+             path: String = #file, function: String = #function, line: Int = #line) {
+        let log = LogMessage(path: path, function: function, text: message, level: level, line: line)
+        logMessage(log)
+    }
+    
+    /// Enable log messages of a specific `LogLevel` to be added to the log.
+    ///
+    /// - parameters:
+    ///     - levels: an array of LogLevel want to enabled.
+    ///
+    /// - returns: Void.
+    func enableLevels(_ levels: [LogLevel]) {
         readWriteLock.write {
-            enabledLevels.insert(level)
+            levels.forEach { enabledLevels.insert($0) }
+        }
+    }
+}
+
+// MARK: - Public Methods
+public extension LoggerManager {
+    /// Entry point to access Logger feature.
+    func initialize() {
+        enableLevels(LogLevel.allCases)
+        setUpLogger()
+    }
+    
+    /// Add an implementation of `Logging` to a list of registered handlers.
+    ///
+    /// - parameter logging: An implementation of Logging.
+    /// - returns: Void.
+    func addLogging(_ logging: Logging) {
+        readWriteLock.write {
+            loggers.append(logging)
+        }
+    }
+    
+    /// Remove an implemation `Logging` from a list of registered handlers.
+    ///
+    /// - parameter logging: An implementation of Logging.
+    /// - returns: Void.
+    func removeLogging(_ logging: Logging) {
+//        if logging {
+//            <#code#>
+//        }
+    }
+    
+    /// Clear all registered handlers (observers).
+    func clearLogging() {
+        readWriteLock.write {
+            loggers.removeAll()
         }
     }
 
     /// Disable log messages of a specific `LogLevel` to prevent them from being logged
-    func disableLevel(_ level: LogLevel) {
+    ///
+    /// Disable LogLevels debug and warning
+    /// ```
+    /// LoggerManager.sharedInstance.disableLevels([.debug, .warning]
+    /// ```
+    /// Disable all LogLevels
+    /// ```
+    /// LoggerManager.sharedInstance.disableLevels(LogLevel.allCases)
+    /// ```
+    /// - parameters:
+    ///     - levels: an array of LogLevel want to disabled.
+    ///
+    /// - returns: Void.
+    func disableLevels(_ levels: [LogLevel]) {
         readWriteLock.write {
-            enabledLevels.remove(level)
+            levels.forEach { enabledLevels.remove($0) }
         }
     }
 }
