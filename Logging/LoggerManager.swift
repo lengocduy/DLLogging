@@ -9,7 +9,9 @@
 import Foundation
 
 // MARK: - LogFormatter Default
-struct LogFormatterImpl: LogFormatter {
+public struct LogFormatterImpl: LogFormatter {
+    public init() {}
+    
     public func formatMessage(_ message: LogMessage) -> String {
         let time = Date().stringByFormat(.iso8601)
         return "\(time) [\(message.level.symbol)][\(getLogLocation(message))] -> \(message.text)"
@@ -37,7 +39,7 @@ open class LoggerManager: LogPublisher {
     
     public private(set) var loggerFactoryType: LoggerFactory.Type = LoggerFactoryImpl.self
     private(set) var loggers: [Logging] = []
-    private var enabledLevels = Set<LogLevel>()
+    private var enabledLevels = Set<LogLevel>(LogLevel.allCases)
     private let readWriteLock = ReadWriteLock(label: "loggerLock")
     
     private init() {}
@@ -93,17 +95,23 @@ extension LoggerManager {
     /// - returns: Void.
     func log(_ level: LogLevel, message: String,
              path: String = #file, function: String = #function, line: Int = #line) {
+        var enabledLevels = Set<LogLevel>()
+        readWriteLock.read {
+            enabledLevels = self.enabledLevels
+        }
+        guard enabledLevels.contains(level) else { return }
+        
         let log = LogMessage(path: path, function: function, text: message, level: level, line: line)
         logMessage(log)
     }
     
-    /// Enable log messages of a specific `LogLevel` to be added to the log.
+    /// Enable log of an array of `LogLevels` to be added to the log.
     ///
     /// - parameters:
     ///     - levels: an array of LogLevel want to enabled.
     ///
     /// - returns: Void.
-    func enableLevels(_ levels: [LogLevel]) {
+    func enableLogLevels(_ levels: [LogLevel]) {
         readWriteLock.write {
             levels.forEach { enabledLevels.insert($0) }
         }
@@ -114,7 +122,7 @@ extension LoggerManager {
 public extension LoggerManager {
     /// Entry point to access Logger feature.
     func initialize() {
-        enableLevels(LogLevel.allCases)
+        enableLogLevels(LogLevel.allCases)
         setUpLogger()
     }
     
@@ -145,7 +153,7 @@ public extension LoggerManager {
         }
     }
 
-    /// Disable log messages of a specific `LogLevel` to prevent them from being logged
+    /// Disable log of an array of `LogLevels` to prevent them from being logged
     ///
     /// Disable LogLevels debug and warning
     /// ```
@@ -159,7 +167,7 @@ public extension LoggerManager {
     ///     - levels: an array of LogLevel want to disabled.
     ///
     /// - returns: Void.
-    func disableLevels(_ levels: [LogLevel]) {
+    func disableLogLevels(_ levels: [LogLevel]) {
         readWriteLock.write {
             levels.forEach { enabledLevels.remove($0) }
         }
