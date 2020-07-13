@@ -51,7 +51,10 @@ open class LoggerManager: LogPublisher {
     private func setUpLogger() {
         setUpLoggerFactoryType(LoggerFactoryImpl.self)
         let logFormatter = LogFormatterImpl()
-        addLogging(loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter))
+        let consoleLogging = loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter) as! PrintLogging
+        let anyConsoleLogging = AnyLogging(consoleLogging)
+        addLogging(anyConsoleLogging)
+        addLogging(loggerFactoryType.makeConsoleDebugLogging(logFormatter: logFormatter))
         addLogging(loggerFactoryType.makeFileLogging(fileName: "appLogs", logFormatter: logFormatter))
     }
     

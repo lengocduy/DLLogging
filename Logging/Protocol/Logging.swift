@@ -8,6 +8,16 @@
 
 import Foundation
 
+// MARK: - Identifiable
+@available(iOS, introduced: 11.12)
+protocol Identifiable {
+    /// A type representing the stable identity of the entity associated with `self`.
+    associatedtype ID: Hashable
+
+    /// The stable identity of the entity associated with `self`.
+    var id: Self.ID { get }
+}
+
 /// Any object that conforms to this protocol may log messages
 // MARK: - Logging
 public protocol Logging: LogSubscriber {
@@ -23,16 +33,18 @@ public protocol Logging: LogSubscriber {
 
 // MARK: - Default Implementation
 extension Logging {
-    var logFormatter: LogFormatter? {
+    public var logFormatter: LogFormatter? {
         return nil
     }
     
     func reset() {}
 }
 
-@available(iOS 13, *)
-extension Identifiable where Self: AnyObject {
-    var id: ObjectIdentifier {
-        return ObjectIdentifier(self)
+// MARK: - Identifiable
+extension Logging where Self: Identifiable {
+    typealias ID = String
+
+    var id: String {
+        return "\(Self.self)"
     }
 }

@@ -13,19 +13,19 @@ import Foundation
 // MARK: - LogMessage
 public struct LogMessage {
     /// The file where this log message was created
-    let file: String
+    public let file: String
 
     /// The function where this log message was created
-    let function: String
+    public let function: String
 
     /// The text of the log message
-    let text: String
+    public let text: String
 
     /// The level of the log message
-    let level: LogLevel
+    public let level: LogLevel
     
     /// The line of the log message
-    let line: Int
+    public let line: Int
     
     /// The value to know whether need to sync with other system or not
     let isAllowedSyncToCloud: Bool

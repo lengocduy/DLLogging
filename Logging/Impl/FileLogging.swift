@@ -10,7 +10,7 @@ import Foundation
 
 final class FileLogging: Logging {
     private let fileHandle: FileHandle
-    private(set )var logFormatter: LogFormatter?
+    private(set) var logFormatter: LogFormatter?
     
     init(path: String, logFormatter: LogFormatter?) {
         /// create a file if it does not exist
@@ -54,5 +54,5 @@ final class FileLogging: Logging {
     }
 }
 
-@available(iOS 13, *)
+// MARK: - Identifiable
 extension FileLogging: Identifiable {}
