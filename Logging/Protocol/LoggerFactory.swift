@@ -14,7 +14,7 @@ import Foundation
 /// A hierarchy that encapsulates: many possible "platforms", and the construction of a suite of "products".
 /// The new operator considered harmful.
 public protocol LoggerFactory {
-    static func makeConsoleLogging(logFormatter: LogFormatter?) -> Logging
-    static func makeConsoleDebugLogging(logFormatter: LogFormatter?) -> Logging
-    static func makeFileLogging(fileName: String, logFormatter: LogFormatter?) -> Logging
+    static func makeConsoleLogging(logFormatter: LogFormatter?) -> BaseLogging
+    static func makeConsoleDebugLogging(logFormatter: LogFormatter?) -> BaseLogging
+    static func makeFileLogging(fileName: String, logFormatter: LogFormatter?) -> BaseLogging
 }

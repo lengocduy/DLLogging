@@ -8,14 +8,8 @@
 
 import Foundation
 
-final class PrintLogging: Logging {
-    private(set) var logFormatter: LogFormatter?
-    
-    init(logFormatter: LogFormatter?) {
-        self.logFormatter = logFormatter
-    }
-    
-    func receiveMessage(_ message: LogMessage) {
+final class PrintLogging: BaseLogging {
+    override func receiveMessage(_ message: LogMessage) {
         guard let logFormatter = logFormatter else {
             print(message.text)
             return
@@ -25,6 +19,3 @@ final class PrintLogging: Logging {
         print(formattedMessage)
     }
 }
-
-// MARK: - Identifiable
-extension PrintLogging: Identifiable {}

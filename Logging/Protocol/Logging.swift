@@ -20,7 +20,7 @@ protocol Identifiable {
 
 /// Any object that conforms to this protocol may log messages
 // MARK: - Logging
-public protocol Logging: LogSubscriber {
+protocol Logging: LogSubscriber {
     /// Decorate (delegate) allow client customize format message.
     var logFormatter: LogFormatter? { get }
     

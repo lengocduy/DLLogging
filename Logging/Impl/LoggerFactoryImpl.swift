@@ -10,15 +10,15 @@ import Foundation
 
 // MARK: - LoggerFactoryImpl
 public struct LoggerFactoryImpl: LoggerFactory {
-    public static func makeConsoleLogging(logFormatter: LogFormatter? = nil) -> Logging {
+    public static func makeConsoleLogging(logFormatter: LogFormatter? = nil) -> BaseLogging {
         return PrintLogging(logFormatter: logFormatter)
     }
     
-    public static func makeConsoleDebugLogging(logFormatter: LogFormatter? = nil) -> Logging {
+    public static func makeConsoleDebugLogging(logFormatter: LogFormatter? = nil) -> BaseLogging {
         return PrintDebugLogging(logFormatter: logFormatter)
     }
     
-    public static func makeFileLogging(fileName: String, logFormatter: LogFormatter? = nil) -> Logging {
+    public static func makeFileLogging(fileName: String, logFormatter: LogFormatter? = nil) -> BaseLogging {
         let filePath = getPathFileName(fileName)
         return FileLogging(path: filePath, logFormatter: logFormatter)
     }
