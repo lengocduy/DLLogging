@@ -78,15 +78,20 @@ There are two ways to install `swift-log`
 Just add to your project's `Podfile`:
 
 ```
-github "lengocduy/swift-log"
+pod 'Logging', :git => 'https://github.com/lengocduy/swift-log.git'
 ```
 
 ### Carthage
 
 Add following to `Cartfile`:
 
+#### Use the latest version
 ```
 github "lengocduy/swift-log"
+```
+#### Use the specific branch (currently, only support this option on master branch)
+```
+github "lengocduy/swift-log" "branch"
 ```
 
 ## Architecture
