@@ -31,4 +31,10 @@ extension BaseLogging: Equatable {
 }
 
 // MARK: Identifiable
-extension BaseLogging: Identifiable {}
+extension BaseLogging: Identifiable {
+    typealias ID = String
+
+    var id: String {
+        return "\(Self.self)"
+    }
+}

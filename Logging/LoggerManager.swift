@@ -143,9 +143,7 @@ public extension LoggerManager {
     /// - parameter logging: An implementation of Logging.
     /// - returns: Void.
     func removeLogging(_ logging: BaseLogging) {
-        var loggers = [BaseLogging]()
         readWriteLock.read {
-            loggers = self.loggers
             // swiftlint:disable identifier_name
             for i in 0...loggers.count {
                 let currentLogger = loggers[i]

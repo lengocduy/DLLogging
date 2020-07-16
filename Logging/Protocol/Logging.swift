@@ -30,21 +30,3 @@ protocol Logging: LogSubscriber {
     /// - returns: Void.
     func reset()
 }
-
-// MARK: - Default Implementation
-extension Logging {
-    public var logFormatter: LogFormatter? {
-        return nil
-    }
-    
-    func reset() {}
-}
-
-// MARK: - Identifiable
-extension Logging where Self: Identifiable {
-    typealias ID = String
-
-    var id: String {
-        return "\(Self.self)"
-    }
-}
