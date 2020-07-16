@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - LogSubscriber Observer
-public protocol LogSubscriber {
+protocol LogSubscriber {
     /// Receive a new message an instance of `LogMessage`.
     /// Normally, This function was invoked by an Observable (Subject).
     ///

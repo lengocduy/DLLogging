@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ReadWriteLock {
+final class ReadWriteLock {
     let concurrentQueue: DispatchQueue
     typealias Completion = () -> Void
     

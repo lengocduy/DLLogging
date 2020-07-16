@@ -1,6 +1,6 @@
 # swift-log
 
-This repo supports logging
+This repo supports Swift's logging
 
 1. Console Logging
 2. File Logging and sync each configurable timeInterval
@@ -14,14 +14,13 @@ This repo supports logging
 5. ❗️ Error: An error occurred, but it's recoverable, just info about what happened
 6. 🛑 Severe: A server error occurred
 
-## Prerequisite (Developer only)
+## Prerequisite (Contributor only)
 
 - *[SwiftLint](https://github.com/realm/SwiftLint)* enforce Swift style and conventions. Install via Homebrew: ```$ brew install swiftlint```
 - *Standardize* development mode ```$ ./Scripts/setup.sh```
 
 ## Requirements
-- Xcode 11.4.1+
-- Swift 5.0
+- Swift 5.0+
 
 ## How
 ### Setup
@@ -40,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 ```
-2. Customize Logging
+2. Use supported Loggings
 ```
 import UIKit
 import Logging
@@ -59,14 +58,76 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 ```
+3. Add your custom Logging
+```
+import UIKit
+import Logging
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        /// Setup Logging
+        let logFormatter = LogFormatterImpl()
+        let testLogging = TestLogging(logFormatter: logFormatter)
+        LoggerManager.sharedInstance.addLogging(testLogging)
+        return true
+    }
+}
+
+/// Your custom Logging.
+final class TestLogging: BaseLogging {
+    override func receiveMessage(_ message: LogMessage) {
+        if let formattedMessage = logFormatter?.formatMessage(message) {
+            print(formattedMessage)
+            print("Add your more logic here if you want")
+        } else {
+            print("Add your logic to handle this message: \(message.text)")
+        }
+    }
+}
+```
+4. Add your custom Formatter
+```
+import UIKit
+import Logging
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        /// Setup Logging
+        let logFormatter = CustomLoggingFormatter()
+        let testLogging = LoggerFactoryImpl.makeConsoleLogging(logFormatter: logFormatter)
+        LoggerManager.sharedInstance.addLogging(testLogging)
+        return true
+    }
+}
+
+/// Your custom Formatter
+final class CustomLoggingFormatter: LogFormatter {
+    func formatMessage(_ message: LogMessage) -> String {
+        return "[\(message.level.symbol)][\(message.function)] -> \(message.text)"
+    }
+}
+```
 ### Use
 ```
+/// Invoke
 Log.info(message: "info")
 Log.debug(message: "debug")
 Log.verbose(message: "verbose")
 Log.warning(message: "warning")
 Log.error(message: "error")
 Log.severe(message: "severe")
+
+/// Output
+2020-07-16T18:50:09.254+0700 [ℹ️][ViewController.swift:18:viewDidLoad()] -> info
+2020-07-16T18:50:09.256+0700 [🔍][ViewController.swift:19:viewDidLoad()] -> debug
+2020-07-16T18:50:09.256+0700 [🗣][ViewController.swift:20:viewDidLoad()] -> verbose
+2020-07-16T18:50:09.257+0700 [⚠️][ViewController.swift:21:viewDidLoad()] -> warning
+2020-07-16T18:50:09.257+0700 [❗️][ViewController.swift:22:viewDidLoad()] -> error
+2020-07-16T18:50:09.257+0700 [🛑][ViewController.swift:23:viewDidLoad()] -> severe
 ```
 
 ## Installation
@@ -97,3 +158,6 @@ github "lengocduy/swift-log" "branch"
 ## Architecture
 
 ![Architecture](ArchDiagram.png)
+
+## Interaction Flow
+![Interaction Flow](InteractionFlow.png)
