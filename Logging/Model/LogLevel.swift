@@ -30,7 +30,7 @@ public enum LogLevel: String, CaseIterable {
     /// Severe 🛑 - A server error occurred
     case severe
     
-    var symbol: String {
+    public var symbol: String {
         switch self {
         case .verbose : return "🗣"
         case .debug : return "🔍"
@@ -41,7 +41,7 @@ public enum LogLevel: String, CaseIterable {
         }
     }
     
-    var name: String {
+    public var name: String {
         return "[\(self.rawValue.uppercased())]"
     }
 }

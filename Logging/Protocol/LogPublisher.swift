@@ -11,19 +11,19 @@ import Foundation
 // MARK: - LogPublisher Observable
 protocol LogPublisher {
     /// A list of registered handlers or observers with this Observable
-    var loggers: [Logging] { get }
+    var loggers: [BaseLogging] { get }
     
     /// Add an implementation of `Logging` to a list of registered handlers.
     ///
     /// - parameter logging: An implementation of Logging.
     /// - returns: Void.
-    func addLogging(_ logging: Logging)
+    func addLogging(_ logging: BaseLogging)
     
     /// Remove an implemation `Logging` from a list of registered handlers.
     ///
     /// - parameter logging: An implementation of Logging.
     /// - returns: Void.
-    func removeLogging(_ logging: Logging)
+    func removeLogging(_ logging: BaseLogging)
     
     /// Log a message an instance of `LogMessage`.
     /// Normally, This function was invoked by a Client.

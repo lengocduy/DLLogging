@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "Logging"
-  spec.version      = "0.0.1"
+  spec.version      = "1.0.0"
   spec.summary      = "Swift's Framework Logging"
 
   # This description is used to generate tags and improve search results.

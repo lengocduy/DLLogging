@@ -38,7 +38,7 @@ open class LoggerManager: LogPublisher {
     public static let sharedInstance = LoggerManager()
     
     public private(set) var loggerFactoryType: LoggerFactory.Type = LoggerFactoryImpl.self
-    private(set) var loggers: [Logging] = []
+    private(set) var loggers: [BaseLogging] = []
     private var enabledLevels = Set<LogLevel>(LogLevel.allCases)
     private let readWriteLock = ReadWriteLock(label: "loggerLock")
     
@@ -51,7 +51,9 @@ open class LoggerManager: LogPublisher {
     private func setUpLogger() {
         setUpLoggerFactoryType(LoggerFactoryImpl.self)
         let logFormatter = LogFormatterImpl()
-        addLogging(loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter))
+        let consoleLogging = loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter) as! PrintLogging
+        addLogging(consoleLogging)
+        addLogging(loggerFactoryType.makeConsoleDebugLogging(logFormatter: logFormatter))
         addLogging(loggerFactoryType.makeFileLogging(fileName: "appLogs", logFormatter: logFormatter))
     }
     
@@ -130,7 +132,7 @@ public extension LoggerManager {
     ///
     /// - parameter logging: An implementation of Logging.
     /// - returns: Void.
-    func addLogging(_ logging: Logging) {
+    func addLogging(_ logging: BaseLogging) {
         readWriteLock.write {
             loggers.append(logging)
         }
@@ -140,10 +142,19 @@ public extension LoggerManager {
     ///
     /// - parameter logging: An implementation of Logging.
     /// - returns: Void.
-    func removeLogging(_ logging: Logging) {
-//        if logging {
-//            <#code#>
-//        }
+    func removeLogging(_ logging: BaseLogging) {
+        readWriteLock.read {
+            // swiftlint:disable identifier_name
+            for i in 0...loggers.count {
+                let currentLogger = loggers[i]
+
+                if logging == currentLogger {
+                    loggers.remove(at: i)
+                    break
+                }
+            }
+            // swiftlint:enable
+        }
     }
     
     /// Clear all registered handlers (observers).

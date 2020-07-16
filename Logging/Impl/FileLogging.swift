@@ -8,9 +8,8 @@
 
 import Foundation
 
-final class FileLogging: Logging {
+final class FileLogging: BaseLogging {
     private let fileHandle: FileHandle
-    private(set )var logFormatter: LogFormatter?
     
     init(path: String, logFormatter: LogFormatter?) {
         /// create a file if it does not exist
@@ -24,8 +23,8 @@ final class FileLogging: Logging {
         /// Move to the end of the file so we can append messages
         fileHandle.seekToEndOfFile()
         
-        /// Allow client customizing message
-        self.logFormatter = logFormatter
+        /// Designated initializer must always delegate up to Designated initializer superclass
+        super.init(logFormatter: logFormatter)
     }
 
     deinit {
@@ -33,7 +32,7 @@ final class FileLogging: Logging {
         fileHandle.closeFile()
     }
 
-    func receiveMessage(_ message: LogMessage) {
+    override func receiveMessage(_ message: LogMessage) {
         guard message.isAllowedSyncToCloud else {
             return
         }
@@ -49,10 +48,7 @@ final class FileLogging: Logging {
         }
     }
     
-    func reset() {
+    override func reset() {
         fileHandle.seek(toFileOffset: 0)
     }
 }
-
-@available(iOS 13, *)
-extension FileLogging: Identifiable {}
