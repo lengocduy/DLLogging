@@ -1,5 +1,7 @@
 # swift-log
 
+![CI](https://github.com/lengocduy/swift-log/workflows/CI/badge.svg)
+
 This repo supports Swift's logging
 
 1. Console Logging
