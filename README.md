@@ -1,5 +1,7 @@
 # swift-log
 
+![CI](https://github.com/lengocduy/swift-log/workflows/CI/badge.svg)
+
 This repo supports Swift's logging
 
 1. Console Logging
@@ -14,12 +16,8 @@ This repo supports Swift's logging
 5. ❗️ Error: An error occurred, but it's recoverable, just info about what happened
 6. 🛑 Severe: A server error occurred
 
-## Prerequisite (Contributor only)
-
-- *[SwiftLint](https://github.com/realm/SwiftLint)* enforce Swift style and conventions. Install via Homebrew: ```$ brew install swiftlint```
-- *Standardize* development mode ```$ ./Scripts/setup.sh```
-
 ## Requirements
+- Xcode 11+
 - Swift 5.0+
 
 ## How
@@ -132,7 +130,7 @@ Log.severe(message: "severe")
 
 ## Installation
 
-There are two ways to install `swift-log`
+There are three ways to install `swift-log`
 
 ### CocoaPods
 
@@ -146,13 +144,33 @@ pod 'Logging', :git => 'https://github.com/lengocduy/swift-log.git'
 
 Add following to `Cartfile`:
 
-#### Use the latest version
 ```
 github "lengocduy/swift-log"
 ```
-#### Use the specific branch (currently, only support this option on master branch)
+
+### Swift Package Manager
+
+Create a `Package.swift` file:
+
 ```
-github "lengocduy/swift-log" "branch"
+// swift-tools-version:5.0
+
+import PackageDescription
+
+let package = Package(
+        name: "TestLogging",
+
+        dependencies: [
+            .package(url: "https://github.com/lengocduy/swift-log.git", from: "1.0.0"),
+        ],
+
+        targets: [
+            .target(
+                    name: "TestLogging",
+                    dependencies: ["Logging"])
+        ]
+)
+
 ```
 
 ## Architecture
