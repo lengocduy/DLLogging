@@ -18,19 +18,7 @@ public struct LoggerFactoryImpl: LoggerFactory {
         return PrintDebugLogging(logFormatter: logFormatter)
     }
     
-    public static func makeFileLogging(fileName: String, logFormatter: LogFormatter? = nil) -> BaseLogging {
-        let filePath = getPathFileName(fileName)
-        return FileLogging(path: filePath, logFormatter: logFormatter)
-    }
-}
-
-// MARK: - Private Extension
-private extension LoggerFactory {
-    static func getPathFileName(_ fileName: String) -> String {
-        return FileManager
-            .default
-            .urls(for: .documentDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent(fileName)
-            .path
+    public static func makeFileLogging(logFormatter: LogFormatter? = nil, delegate: FileLoggingDelegate? = nil) -> BaseLogging {
+        return FileLogging(logFormatter: logFormatter, delegate: delegate)
     }
 }

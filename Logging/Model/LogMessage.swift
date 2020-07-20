@@ -26,13 +26,10 @@ public struct LogMessage {
     
     /// The line of the log message
     public let line: Int
-    
-    /// The value to know whether need to sync with other system or not
-    let isAllowedSyncToCloud: Bool
 
     init(path: String, function: String,
          text: String, level: LogLevel,
-         line: Int, isAllowedSyncToCloud: Bool = false) {
+         line: Int) {
         if let file = path.components(separatedBy: "/").last {
             self.file = file
         } else {
@@ -42,6 +39,5 @@ public struct LogMessage {
         self.text = text
         self.level = level
         self.line = line
-        self.isAllowedSyncToCloud = isAllowedSyncToCloud
     }
 }

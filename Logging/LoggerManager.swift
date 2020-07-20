@@ -54,7 +54,7 @@ open class LoggerManager: LogPublisher {
         let consoleLogging = loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter) as! PrintLogging
         addLogging(consoleLogging)
         addLogging(loggerFactoryType.makeConsoleDebugLogging(logFormatter: logFormatter))
-        addLogging(loggerFactoryType.makeFileLogging(fileName: "appLogs", logFormatter: logFormatter))
+        addLogging(loggerFactoryType.makeFileLogging(logFormatter: logFormatter, delegate: nil))
     }
     
     /// Allow Client inject customized its implementation conform to LoggerFactory.
