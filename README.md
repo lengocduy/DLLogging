@@ -5,7 +5,7 @@
 This repository implements mechanism to supports:
 
 - Unified Logging.
-- Modularize Logging.
+- Modularize, Centralize Logging.
 - Plugin the new logging easier.
 - Fully customize format logging's message.
 - Built-in Loggings
@@ -201,3 +201,7 @@ let package = Package(
 ## Interaction Flow
 
 ![Interaction Flow](InteractionFlow.png)
+
+## License
+
+Logging is available under the MIT license. See the [LICENSE](LICENSE.md) file for more info.

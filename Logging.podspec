@@ -25,9 +25,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  A sharable logging for iOS application written in Swift. 
+  A unified logging for iOS/MacOS application written in Swift. 
+  Modularize, Centralize, easier to extend Logging.
   It supports log levels: verbose, debug, info, warning, error, severe.
-  It supports write to file and configurable sync log file to your server (S3) and group by data
+  Build-in Loggings: Console, File.
                  DESC
 
   spec.homepage     = "https://lengocduy.github.io/swift-log"
@@ -41,8 +42,7 @@ Pod::Spec.new do |spec|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  spec.license      = "{ :type => 'BSD' }"
-
+  spec.license      = { :type => 'MIT', :file => "LICENSE.md" }
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -73,7 +73,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/lengocduy/swift-log.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/lengocduy/swift-log.git", :tag => "v#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -127,6 +127,6 @@ Pod::Spec.new do |spec|
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
-  spec. swift_versions = '5.0'
+  spec.swift_versions = '5.0'
 
 end
