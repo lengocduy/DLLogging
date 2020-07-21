@@ -16,5 +16,5 @@ import Foundation
 public protocol LoggerFactory {
     static func makeConsoleLogging(logFormatter: LogFormatter?) -> BaseLogging
     static func makeConsoleDebugLogging(logFormatter: LogFormatter?) -> BaseLogging
-    static func makeFileLogging(fileName: String, logFormatter: LogFormatter?) -> BaseLogging
+    static func makeFileLogging(logFormatter: LogFormatter?, delegate: FileLoggingDelegate?) -> BaseLogging
 }

@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "Logging"
-  spec.version      = "1.0.0"
+  spec.version      = "1.1.0"
   spec.summary      = "Swift's Framework Logging"
 
   # This description is used to generate tags and improve search results.
@@ -63,7 +63,8 @@ Pod::Spec.new do |spec|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  spec.platform     = :ios, "11.0"
+  spec.ios.deployment_target = '11.0'
+  spec.osx.deployment_target = '10.15'
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

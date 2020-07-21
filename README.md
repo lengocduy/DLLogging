@@ -1,28 +1,41 @@
 # swift-log
 
-![CI](https://github.com/lengocduy/swift-log/workflows/CI/badge.svg)
+![CI](https://github.com/lengocduy/swift-log/workflows/CI/badge.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-This repo supports Swift's logging
+This repository implements mechanism to supports:
 
-1. Console Logging
-2. File Logging and sync each configurable timeInterval
+- Unified Logging.
+- Modularize Logging.
+- Plugin the new logging easier.
+- Fully customize format logging's message.
+- Built-in Loggings
+  - Console Logging
+    - PrintLogging: Swift's print.
+    - PrintDebugLogging: Swift's debugPrint.
+  - File Logging
+    - Write the log message to file.
+    - It flushes the content as Data with a UTF-8 encoding and call back to client for process each configured TimeInterval and clear content.
 
 ## Log Level supports
 
-1. 🗣 Verbose: A verbose message, usually useful when working on a specific problem
-2. 🔍 Debug: A debug message that may be useful to a developer
+1. 🗣 Verbose: A verbose message, usually useful when working on a specific problem.
+2. 🔍 Debug: A debug message that may be useful to a developer.
 3. ℹ️ Info: An info message that highlight the progress of the application at coarse-grained level.
-4. ⚠️ Warning: A warning message, may indicate a possible error
-5. ❗️ Error: An error occurred, but it's recoverable, just info about what happened
-6. 🛑 Severe: A server error occurred
+4. ⚠️ Warning: A warning message, may indicate a possible error.
+5. ❗️ Error: An error occurred, but it's recoverable, just info about what happened.
+6. 🛑 Severe: A server error occurred.
 
 ## Requirements
+
 - Xcode 11+
 - Swift 5.0+
 
 ## How
+
 ### Setup
-1. Use Framework's default setup
+
+1. Use Framework's default setup.
+
 ```
 import UIKit
 import Logging
@@ -37,7 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 ```
-2. Use supported Loggings
+
+2. Use supported Loggings.
+
 ```
 import UIKit
 import Logging
@@ -56,7 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 ```
-3. Add your custom Logging
+
+3. Add your custom Logging.
+
 ```
 import UIKit
 import Logging
@@ -75,17 +92,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 /// Your custom Logging.
 final class TestLogging: BaseLogging {
+    let logger = OSLog.init(subsystem: "com.domain.loggingdemo", category: "main")  
     override func receiveMessage(_ message: LogMessage) {
         if let formattedMessage = logFormatter?.formatMessage(message) {
-            print(formattedMessage)
-            print("Add your more logic here if you want")
+            os_log("%@", log: logger, type: OSLogType.debug, formattedMessage)
         } else {
-            print("Add your logic to handle this message: \(message.text)")
+            os_log("Your message %@", message.text)
         }
     }
 }
 ```
-4. Add your custom Formatter
+
+4. Add your custom Formatter.
+
 ```
 import UIKit
 import Logging
@@ -109,7 +128,9 @@ final class CustomLoggingFormatter: LogFormatter {
     }
 }
 ```
+
 ### Use
+
 ```
 /// Invoke
 Log.info(message: "info")
@@ -178,4 +199,5 @@ let package = Package(
 ![Architecture](ArchDiagram.png)
 
 ## Interaction Flow
+
 ![Interaction Flow](InteractionFlow.png)
