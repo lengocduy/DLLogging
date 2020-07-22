@@ -1,6 +1,10 @@
 # DLLogging
 
-![CI](https://github.com/lengocduy/DLLogging/workflows/CI/badge.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![CI](https://github.com/lengocduy/DLLogging/workflows/CI/badge.svg)
+[![Version](https://img.shields.io/cocoapods/v/DLLogging.svg?style=flat)](http://cocoapods.org/pods/DLLogging)
+[![License](https://img.shields.io/cocoapods/l/DLLogging.svg?style=flat)](http://cocoapods.org/pods/DLLogging)
+[![Platform](https://img.shields.io/cocoapods/p/DLLogging.svg?style=flat)](http://cocoapods.org/pods/DLLogging)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 An abstract Logging Framework supports:
 
@@ -158,7 +162,7 @@ There are three ways to install `DLLogging`
 Just add to your project's `Podfile`:
 
 ```
-pod 'DLLogging', :git => 'https://github.com/lengocduy/DLLogging.git'
+pod 'DLLogging', '~> 1.1'
 ```
 
 ### Carthage
@@ -196,11 +200,11 @@ let package = Package(
 
 ## Architecture
 
-![Architecture](ArchDiagram.png)
+![Architecture](https://raw.githubusercontent.com/lengocduy/DLLogging/master/ArchDiagram.png)
 
 ## Interaction Flow
 
-![Interaction Flow](InteractionFlow.png)
+![Interaction Flow](https://raw.githubusercontent.com/lengocduy/DLLogging/master/InteractionFlow.png)
 
 ## License
 
