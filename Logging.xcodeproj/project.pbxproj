@@ -25,7 +25,7 @@
 		D67B32CE24C0443E0086AF6A /* BaseLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B32CD24C0443D0086AF6A /* BaseLogging.swift */; };
 		D67B32D324C59A6F0086AF6A /* FileLoggingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B32D224C59A6E0086AF6A /* FileLoggingDelegate.swift */; };
 		D6CB04C224A925BC00CA4EF6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6CB04C124A925BC00CA4EF6 /* README.md */; };
-		D6FB6D812480556900E03990 /* Logging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FB6D772480556900E03990 /* Logging.framework */; };
+		D6FB6D812480556900E03990 /* DLLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FB6D772480556900E03990 /* DLLogging.framework */; };
 		D6FB6D862480556900E03990 /* LoggingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB6D852480556900E03990 /* LoggingTests.swift */; };
 		D6FB6D882480556900E03990 /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = D6FB6D7A2480556900E03990 /* Logging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -59,7 +59,7 @@
 		D67B32CD24C0443D0086AF6A /* BaseLogging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLogging.swift; sourceTree = "<group>"; };
 		D67B32D224C59A6E0086AF6A /* FileLoggingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoggingDelegate.swift; sourceTree = "<group>"; };
 		D6CB04C124A925BC00CA4EF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D6FB6D772480556900E03990 /* Logging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6FB6D772480556900E03990 /* DLLogging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DLLogging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FB6D7A2480556900E03990 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		D6FB6D7B2480556900E03990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6FB6D802480556900E03990 /* LoggingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoggingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6FB6D812480556900E03990 /* Logging.framework in Frameworks */,
+				D6FB6D812480556900E03990 /* DLLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +135,7 @@
 		D6FB6D782480556900E03990 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D6FB6D772480556900E03990 /* Logging.framework */,
+				D6FB6D772480556900E03990 /* DLLogging.framework */,
 				D6FB6D802480556900E03990 /* LoggingTests.xctest */,
 			);
 			name = Products;
@@ -178,9 +178,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D6FB6D762480556900E03990 /* Logging */ = {
+		D6FB6D762480556900E03990 /* DLLogging */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6FB6D8B2480556900E03990 /* Build configuration list for PBXNativeTarget "Logging" */;
+			buildConfigurationList = D6FB6D8B2480556900E03990 /* Build configuration list for PBXNativeTarget "DLLogging" */;
 			buildPhases = (
 				D6FB6D722480556900E03990 /* Headers */,
 				D6FB6D732480556900E03990 /* Sources */,
@@ -192,9 +192,9 @@
 			);
 			dependencies = (
 			);
-			name = Logging;
+			name = DLLogging;
 			productName = Logging;
-			productReference = D6FB6D772480556900E03990 /* Logging.framework */;
+			productReference = D6FB6D772480556900E03990 /* DLLogging.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D6FB6D7F2480556900E03990 /* LoggingTests */ = {
@@ -247,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D6FB6D762480556900E03990 /* Logging */,
+				D6FB6D762480556900E03990 /* DLLogging */,
 				D6FB6D7F2480556900E03990 /* LoggingTests */,
 			);
 		};
@@ -330,7 +330,7 @@
 /* Begin PBXTargetDependency section */
 		D6FB6D832480556900E03990 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D6FB6D762480556900E03990 /* Logging */;
+			target = D6FB6D762480556900E03990 /* DLLogging */;
 			targetProxy = D6FB6D822480556900E03990 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -565,7 +565,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6FB6D8B2480556900E03990 /* Build configuration list for PBXNativeTarget "Logging" */ = {
+		D6FB6D8B2480556900E03990 /* Build configuration list for PBXNativeTarget "DLLogging" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6FB6D8C2480556900E03990 /* Debug */,

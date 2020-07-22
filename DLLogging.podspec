@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "Logging"
+  spec.name         = "DLLogging"
   spec.version      = "1.1.0"
   spec.summary      = "Swift's Framework Logging"
 
@@ -31,7 +31,7 @@ Pod::Spec.new do |spec|
   Build-in Loggings: Console, File.
                  DESC
 
-  spec.homepage     = "https://lengocduy.github.io/swift-log"
+  spec.homepage     = "https://lengocduy.github.io/DLLogging"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -73,7 +73,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/lengocduy/swift-log.git", :tag => "v#{spec.version}" }
+  spec.source       = { :git => "https://github.com/lengocduy/DLLogging.git", :tag => "v#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

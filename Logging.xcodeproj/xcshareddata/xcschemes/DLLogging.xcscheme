@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D6FB6D762480556900E03990"
-               BuildableName = "Logging.framework"
-               BlueprintName = "Logging"
+               BuildableName = "DLLogging.framework"
+               BlueprintName = "DLLogging"
                ReferencedContainer = "container:Logging.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -51,8 +51,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6FB6D762480556900E03990"
-            BuildableName = "Logging.framework"
-            BlueprintName = "Logging"
+            BuildableName = "DLLogging.framework"
+            BlueprintName = "DLLogging"
             ReferencedContainer = "container:Logging.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -1,8 +1,8 @@
-# swift-log
+# DLLogging
 
-![CI](https://github.com/lengocduy/swift-log/workflows/CI/badge.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![CI](https://github.com/lengocduy/DLLogging/workflows/CI/badge.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-This repository implements mechanism to supports:
+An abstract Logging Framework supports:
 
 - Unified Logging.
 - Modularize, Centralize Logging.
@@ -38,7 +38,7 @@ This repository implements mechanism to supports:
 
 ```
 import UIKit
-import Logging
+import DLLogging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ```
 import UIKit
-import Logging
+import DLLogging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ```
 import UIKit
-import Logging
+import DLLogging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -107,7 +107,7 @@ final class TestLogging: BaseLogging {
 
 ```
 import UIKit
-import Logging
+import DLLogging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -151,14 +151,14 @@ Log.severe(message: "severe")
 
 ## Installation
 
-There are three ways to install `swift-log`
+There are three ways to install `DLLogging`
 
 ### CocoaPods
 
 Just add to your project's `Podfile`:
 
 ```
-pod 'Logging', :git => 'https://github.com/lengocduy/swift-log.git'
+pod 'DLLogging', :git => 'https://github.com/lengocduy/DLLogging.git'
 ```
 
 ### Carthage
@@ -166,7 +166,7 @@ pod 'Logging', :git => 'https://github.com/lengocduy/swift-log.git'
 Add following to `Cartfile`:
 
 ```
-github "lengocduy/swift-log"
+github "lengocduy/DLLogging"
 ```
 
 ### Swift Package Manager
@@ -182,13 +182,13 @@ let package = Package(
         name: "TestLogging",
 
         dependencies: [
-            .package(url: "https://github.com/lengocduy/swift-log.git", from: "1.0.0"),
+            .package(url: "https://github.com/lengocduy/DLLogging.git", from: "1.1.0"),
         ],
 
         targets: [
             .target(
                     name: "TestLogging",
-                    dependencies: ["Logging"])
+                    dependencies: ["DLLogging"])
         ]
 )
 
@@ -204,4 +204,4 @@ let package = Package(
 
 ## License
 
-Logging is available under the MIT license. See the [LICENSE](LICENSE.md) file for more info.
+DLLogging is available under the MIT license. See the [LICENSE](LICENSE.md) file for more info.
