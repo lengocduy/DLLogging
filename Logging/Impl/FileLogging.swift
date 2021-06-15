@@ -73,7 +73,7 @@ final class FileLogging: BaseLogging {
 
 // MARK: - Private Extension
 private extension FileLogging {
-    ///get the default log directory
+    /// Get the default log directory
     static func getPathFileName(_ fileName: String) -> String {
         #if os(iOS)
         return FileManager
