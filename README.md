@@ -162,7 +162,7 @@ There are three ways to install `DLLogging`
 Just add to your project's `Podfile`:
 
 ```
-pod 'DLLogging', '~> 1.1'
+pod 'DLLogging', '~> 1.2'
 ```
 
 ### Carthage
@@ -170,8 +170,11 @@ pod 'DLLogging', '~> 1.1'
 Add following to `Cartfile`:
 
 ```
-github "lengocduy/DLLogging"
+github "lengocduy/DLLogging" ~> 1.2
 ```
+
+- To building platform-independent xcframeworks xcode12 and above [here](https://github.com/Carthage/Carthage#building-platform-independent-xcframeworks-xcode-12-and-above)
+- To migrating from framework bundles to xcframework [here](https://github.com/Carthage/Carthage#migrating-a-project-from-framework-bundles-to-xcframeworks)
 
 ### Swift Package Manager
 
@@ -186,7 +189,7 @@ let package = Package(
         name: "TestLogging",
 
         dependencies: [
-            .package(url: "https://github.com/lengocduy/DLLogging.git", from: "1.1.0"),
+            .package(url: "https://github.com/lengocduy/DLLogging.git", from: "1.2.0"),
         ],
 
         targets: [
