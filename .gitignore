@@ -25,6 +25,7 @@ xcuserdata
 ## CocoaPods
 Pods/
 *.xcworkspace
+*.xcframework
 
 ## Carthage
 Carthage/
