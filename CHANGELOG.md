@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.2.1](https://github.com/lengocduy/DLLogging/tree/v1.2.1) (2021-10-25)
+
+- Use `ConsoleLogging` as default to prevent double lines in console log
+
 ## [v1.2.0](https://github.com/lengocduy/DLLogging/tree/v1.2.0) (2021-06-16)
 
 [Full Changelog](https://github.com/lengocduy/DLLogging/compare/v1.1.0...v1.2.0)
