@@ -45,16 +45,14 @@ open class LoggerManager: LogPublisher {
     private init() {}
     
     /// Set up the default for Log.
-    /// Client use this function for quick setup and use default framework.
+    ///
+	/// Client use this function for quick setup and use default framework `ConsoleLogging`
     ///
     /// - returns: Void
     private func setUpLogger() {
         setUpLoggerFactoryType(LoggerFactoryImpl.self)
         let logFormatter = LogFormatterImpl()
-        let consoleLogging = loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter) as! PrintLogging
-        addLogging(consoleLogging)
-        addLogging(loggerFactoryType.makeConsoleDebugLogging(logFormatter: logFormatter))
-        addLogging(loggerFactoryType.makeFileLogging(logFormatter: logFormatter, delegate: nil))
+        addLogging(loggerFactoryType.makeConsoleLogging(logFormatter: logFormatter))
     }
     
     /// Allow Client inject customized its implementation conform to LoggerFactory.
